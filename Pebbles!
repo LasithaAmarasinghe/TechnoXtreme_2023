@@ -1,0 +1,13 @@
+def Max_Score(l):
+    points = 0
+    for i in range(l):
+        n,a,p=map(int,input().split())
+        if (a%4==0):
+            player1=player2=(a//4)//n
+        else:
+            player1=(a//4+1)//n
+            player2=(a//4)//n
+        points+=(player1+player2)*p
+    return(points)
+
+print(Max_Score(int(input())))
