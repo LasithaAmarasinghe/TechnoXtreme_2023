@@ -1,0 +1,17 @@
+N, K = map(int, input().split())
+num = list(map(int, input().split()))   
+num.sort()
+
+def Max_Median(N,K):
+    a=N//2-K//2
+    b=N//2+K//2
+    if K % 2 == 1 :
+        for i in range(a,b+1) :
+            num[i] += 1
+    else :
+        for i in range(a+1, b+1) :
+            num[i] += 1
+    num.sort()
+    print(num[(N//2)])
+
+Max_Median(N,K)
