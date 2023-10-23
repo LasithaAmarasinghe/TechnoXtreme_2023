@@ -1,0 +1,18 @@
+import math
+m,q = {},998244353
+for x in range(int(input())):
+    st = str(input())
+    if st in m :
+        print(m[st])
+    else :
+        s = list(st)
+        c = 1 ; o = 0 ; se = 1
+        s[0] = int(s[0])
+        for i in range(1,len(s)) :
+            s[i] = int(s[i])
+            if s[i] == s[i-1]: c += 1
+            else :
+                o += c-1 ; se *= c ; c = 1
+        o += c-1 ; se *= c
+        m[st] = (o, (se*math.factorial(o))%q)
+        print(o, (se*math.factorial(o))%q)
