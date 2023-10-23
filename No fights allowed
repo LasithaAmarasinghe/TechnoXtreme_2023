@@ -1,0 +1,15 @@
+from itertools import permutations
+
+def func(permutation):
+    for i in range(len(permutation) - 1):
+        if permutation[i] == permutation[i + 1]:
+            return 1
+    return 0
+
+N = int(input())
+int_list = list(map(int, input().split()))
+
+unique_permutations = set(permutation for permutation in permutations(int_list) if not func(permutation))
+
+unique_permutations = len(unique_permutations)
+print(unique_permutations)
