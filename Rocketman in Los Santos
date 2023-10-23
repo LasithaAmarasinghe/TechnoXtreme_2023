@@ -1,0 +1,16 @@
+N, K = map(int, input().split())
+M = 10**9 + 7
+path=[[[0 for _ in range(K+1)] for _ in range(N+1)] for _ in range(N+1)]
+path[0][0][K] = 1  
+
+for x in range(N):
+        for y in range(N+1):
+            for i in range(K+1):
+                if y < N and i > 0:
+                    path[x+1][y+1][i-1] = (path[x+1][y+1][i-1] + path[x][y][i]) % M 
+
+                n_y = max(0, y-1)
+                n_k = K if n_y == 0 else i
+                path[x+1][n_y][n_k] = (path[x+1][n_y][n_k] + path[x][y][i]) % M  
+
+print(path[N][0][K] % M)
