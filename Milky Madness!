@@ -1,0 +1,48 @@
+def func(average, minimums, maximums, fixed_value, num_intervals):
+    if (average <= min(maximums) and average >= max(minimums)):
+        if (fixed_value % num_intervals) == 0:
+            print(0)
+            exit()
+        else:
+            array = [average] * num_intervals
+
+            fixed_value -= average * num_intervals
+
+            while fixed_value > 0:
+                for i in range(num_intervals):
+                    if array[i] < maximums[i]:
+                        array[i] += 1
+                        fixed_value -= 1
+                        if fixed_value == 0:
+                            break
+
+            print(max(array) - min(array))
+            exit()
+
+num_intervals, fixed_value = map(int, input().split())
+
+intervals = []
+for i in range(num_intervals):
+    intervals.append(tuple(map(int, input().split())))
+
+minimums = [x[0] for x in intervals]
+maximums = [x[1] for x in intervals]
+
+average = fixed_value // num_intervals
+
+func(average, minimums, maximums, fixed_value, num_intervals)
+
+array = minimums.copy()
+
+fixed_value -= sum(minimums)
+
+while fixed_value > 0:
+    for i in range(num_intervals):
+        if array[i] < maximums[i]:
+            array[i] += 1
+            fixed_value -= 1
+            if fixed_value == 0:
+                break
+
+min_diff = max(array) - min(array)
+print(min_diff)
